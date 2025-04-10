@@ -136,6 +136,7 @@ export class TodoModalDialog {
         dueDate: new Date(todoModalDialog.dueDateInput.value)
       };
       onSave(todo);
+      todoModalDialog.modal.hide();
     });
 
     todoModalDialog.modal.show();
