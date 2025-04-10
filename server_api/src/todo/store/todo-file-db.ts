@@ -2,7 +2,7 @@ import {TodoSortOptions} from "../model/todo-sort-options";
 import {TodoFilterOptions} from "../model/todo-filter-options";
 import {JSONFilePreset} from 'lowdb/node'
 import {Low} from "lowdb";
-import { TodoDb } from './todo-db';
+import {TodoDb} from './todo-db';
 import {Todo, TodoStatus} from "../model/todo";
 import {UUID} from "../../util/identity/id";
 import {TodoSortAttributes} from "../model/todo-sort-attributes";
