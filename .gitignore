@@ -1,6 +1,7 @@
 # General Files
 node_modules
 build
+tsconfig.tsbuildinfo
 
 # Root package-lock.json
 ./package-lock.json
