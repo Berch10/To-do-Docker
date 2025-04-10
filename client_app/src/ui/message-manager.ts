@@ -1,23 +1,39 @@
 declare var bootstrap: any; // Bootstrap is imported globally, so we just declare that it exists.
 
+/**
+ * UI component to manage messages displayed to for a period of time.
+ */
 export class MessageManager {
+  /**
+   * The container element where messages are displayed.
+   */
   public constructor(private messagesContainer: HTMLElement) {}
 
-  public showMessage(message: string): void {
+  /**
+   * Displays a message for a period of time.
+   * @param message The message to display.
+   * @param periodInMiliSeconds The period in milliseconds to display the message. Default is 5000ms.
+   */
+  public showMessage(message: string, periodInMiliSeconds: number = 5000): void {
     const alertEl: HTMLElement = this.createAlertElement(message);
     const alert: bootstrap.Alert = new bootstrap.Alert(alertEl);
 
     this.messagesContainer.appendChild(alertEl);
 
-    // Auto-remove message after 5 seconds (5000ms)
+    // Auto-remove message after the specified period.
     setTimeout(() => {
       alert.close();
-    }, 5000);
+    }, periodInMiliSeconds);
   }
 
-  public showError(error: any): void {
+  /**
+   * Displays an error message for a period of time.
+   * @param error The error to display.
+   * @param periodInMiliSeconds The period in milliseconds to display the message. Default is 5000ms.
+   */
+  public showError(error: any, periodInMiliSeconds: number = 5000): void {
     const message =  (error instanceof Error) ? error.message : String(error).toString();
-    this.showMessage(message);
+    this.showMessage(message, periodInMiliSeconds);
   }
 
   private createAlertElement(message: string): HTMLElement {

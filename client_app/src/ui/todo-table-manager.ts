@@ -7,6 +7,9 @@ import {TodoStatusParser} from "../util/status-parser.js";
 
 type OnSortFilterChangeHandler = (filter: TodoFilter, order: TodoOrder) => void;
 
+/**
+ * UI component to manage the display of to-do items in a table format.
+ */
 export class TodoTableManager {
   private static SORTABLE_ICON = 'fa-sort';
   private static SORT_ASC_ICON = 'fa-sort-asc';
@@ -58,6 +61,12 @@ export class TodoTableManager {
       </table>
   `;
 
+  /**
+   * Renders the TodoTableManager component and appends it to the specified container.
+   * @param container The HTML element to which the component will be appended.
+   * @param onSortFilterChange The callback function to be called when the sort or filter changes.
+   * @return An instance of TodoTableManager.
+   */
   public static render(
     container: HTMLElement,
     onSortFilterChange: OnSortFilterChangeHandler,
@@ -142,23 +151,43 @@ export class TodoTableManager {
     this.tableBody = this.table.querySelector('tbody') as HTMLTableSectionElement
   }
 
+  /**
+   * Returns the current filter applied to the to-do items.
+   */
   public getFilter(): TodoFilter {
     return this.filter;
   }
 
+  /**
+   * Returns the current order applied to the to-do items.
+   */
   public getOrder(): TodoOrder {
     return this.order;
   }
 
+  /**
+   * Adds all to-do items to the table.
+   * @param todos  The array of to-do items to be added.
+   * @param onEdit Callback function to be called when a to-do is triggered to be edited.
+   * @param onDelete Callback function to be called when a to-do is triggered to be deleted.
+   * @param onStatusChange Callback function to be called when a to-do's status is changed.
+   */
   public async addAll(
-    todo: Todo[],
+    todos: Todo[],
     onEdit: (t: Todo) => void,
     onDelete: (t: Todo) => void,
     onStatusChange: (t: Todo) => void,
   ): Promise<void> {
-    todo.forEach(t => this.add(t, onEdit, onDelete, onStatusChange));
+    todos.forEach(t => this.add(t, onEdit, onDelete, onStatusChange));
   }
 
+  /**
+   * Adds a single to-do item to the table.
+   * @param todo The to-do item to be added.
+   * @param onEdit Callback function to be called when a to-do is triggered to be edited.
+   * @param onDelete Callback function to be called when a to-do is triggered to be deleted.
+   * @param onStatusChange Callback function to be called when a to-do's status is changed.
+   */
   public async add(
     todo: Todo,
     onEdit: (t: Todo) => void,
@@ -169,6 +198,9 @@ export class TodoTableManager {
     this.tableBody.appendChild(todoElement);
   }
 
+  /**
+   * Clears all to-do items from the table.
+   */
   public async clear(): Promise<void> {
     this.tableBody.replaceChildren(); // replace with nothing
   }
@@ -228,18 +260,5 @@ export class TodoTableManager {
     todoTableRow.classList.add('status-' + todo.status);
 
     return todoTableRow;
-  }
-
-  private isDueToday(todo: Todo): boolean {
-    if (!todo.dueDate)  {
-      return false;
-    }
-    // compare only the date part without the time
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const dueDate = new Date(todo.dueDate);
-    dueDate.setHours(0, 0, 0, 0);
-
-    return today.getTime() === dueDate.getTime();
   }
 }
