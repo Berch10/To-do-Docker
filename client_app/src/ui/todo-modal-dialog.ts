@@ -21,7 +21,7 @@ export class TodoModalDialog {
                 <input id="todo-title" type="text" class="form-control mb-2" aria-label="Todo Name Input">
               </div>
               <div>
-                <label for="todo-description">Description*</label>
+                <label for="todo-description">Description (optional)</label>
                 <input id="todo-description" type="text" class="form-control mb-2" aria-label="Todo description Input">
               </div>
               <div>
