@@ -27,18 +27,30 @@ const refreshTodos = async (filter: TodoFilter, order: TodoOrder) => {
       TodoModalDialog.openEdit(
         todo,
         async (todo) => {
-          await todoService.update(todo);
-          await refreshTodos(filter, order);
+          try {
+            await todoService.update(todo);
+            await refreshTodos(filter, order);
+          } catch (error) {
+            messageManager.showError(error);
+          }
         }
       );
     },
     async (todo) => {
-      await todoService.delete(todo);
-      await refreshTodos(filter, order);
+      try {
+        await todoService.delete(todo);
+        await refreshTodos(filter, order);
+      } catch (error) {
+        messageManager.showError(error);
+      }
     },
     async (todo) => {
-      await todoService.updateStatus(todo);
-      await refreshTodos(filter, order);
+      try {
+        await todoService.updateStatus(todo);
+        await refreshTodos(filter, order);
+      } catch (error) {
+        messageManager.showError(error);
+      }
     }
   );
 }
