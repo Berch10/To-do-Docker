@@ -1,6 +1,6 @@
 import {JSONObject} from "../../util/json/json.js";
 import {CreateTodo} from "../dto/create-todo.js";
-import {ParsingError} from "../../util/parser/parsering-error.js";
+import {ParseError} from "../../util/parser/parse-error.js";
 import {Strings} from "../../util/parser/strings.js";
 import {Dates} from "../../util/parser/dates.js";
 import {UpdateTodo} from "../dto/update-todo.js";
@@ -21,13 +21,13 @@ export class TodoDtoParser {
    *
    * @param value The JSON object to parse
    *
-   * @throws {ParsingError} If the value cannot be parsed to a valid CreateTodo object.
+   * @throws {ParseError} If the value cannot be parsed to a valid CreateTodo object.
    *
    * @returns The parsed CreateTodo object
    */
   public static parseCreateTodo(value: JSONObject | undefined): CreateTodo {
     if (!value) {
-      throw new ParsingError(TODO_VALIDATION_MESSAGE);
+      throw new ParseError(TODO_VALIDATION_MESSAGE);
     }
 
     // parse required information for a todo creation
@@ -37,7 +37,7 @@ export class TodoDtoParser {
 
     // validate information for a todo creation
     if (title.trim().length < 3) {
-      throw new ParsingError(TITLE_VALIDATION_MESSAGE);
+      throw new ParseError(TITLE_VALIDATION_MESSAGE);
     }
 
     return {
@@ -52,13 +52,13 @@ export class TodoDtoParser {
    *
    * @param body The JSON object to parse
    *
-   * @throws {ParsingError} If the value cannot be parsed to a valid UpdateTodo object.
+   * @throws {ParseError} If the value cannot be parsed to a valid UpdateTodo object.
    *
    * @returns The parsed UpdateTodo object
    */
   public static parseUpdateTodo(body: JSONObject | undefined): UpdateTodo {
     if (!body) {
-      throw new ParsingError(TODO_VALIDATION_MESSAGE);
+      throw new ParseError(TODO_VALIDATION_MESSAGE);
     }
 
     // parse required information for a to-do update
@@ -69,7 +69,7 @@ export class TodoDtoParser {
 
     // validate information for a to-do update
     if (title.trim().length < 3) {
-      throw new ParsingError(TITLE_VALIDATION_MESSAGE);
+      throw new ParseError(TITLE_VALIDATION_MESSAGE);
     }
 
     return {

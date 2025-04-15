@@ -1,4 +1,4 @@
-import {ParsingError} from "./parsering-error.js";
+import {ParseError} from "./parse-error.js";
 import {Strings} from "./strings.js";
 
 const ISO_DATE_VALIDATION_MESSAGE = 'Value is not a valid ISO date string!';
@@ -39,7 +39,7 @@ export class Dates {
    */
   public static parseISODate(value: unknown, errorMessage: string = ISO_DATE_VALIDATION_MESSAGE): Date {
     if (value === undefined || value === null) {
-      throw new ParsingError(errorMessage);
+      throw new ParseError(errorMessage);
     }
 
     if (value instanceof Date) {
@@ -50,7 +50,7 @@ export class Dates {
     const date = new Date(stringDate);
 
     if (isNaN(date.getTime())) {
-      throw new ParsingError(errorMessage);
+      throw new ParseError(errorMessage);
     }
 
     return date;

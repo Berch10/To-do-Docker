@@ -1,4 +1,4 @@
-import {ParsingError} from "./parsering-error.js";
+import {ParseError} from "./parse-error.js";
 import {ValidationError} from "./validation-error.js";
 
 /**
@@ -10,16 +10,16 @@ export class Strings {
    *
    * @param value The value to parse
    * @param errorMessage The error message to throw if the value is not a string
-   * @throws {ParsingError} If the value is not a string
+   * @throws {ParseError} If the value is not a string
    * @returns The parsed string value
    */
   public static parse(value: unknown, errorMessage: string = 'Value is not a string!'): string {
     if (value === undefined || value === null) {
-      throw new ParsingError(errorMessage);
+      throw new ParseError(errorMessage);
     }
 
     if (typeof value !== 'string') {
-      throw new ParsingError(errorMessage);
+      throw new ParseError(errorMessage);
     }
 
     return value;

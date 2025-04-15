@@ -1,4 +1,4 @@
-import {ParsingError} from "../../util/parser/parsering-error.js";
+import {ParseError} from "../../util/parser/parse-error.js";
 import {TodoStatus} from "../model/todo.js";
 
 const VALID_STATUSES = Object.values(TodoStatus).map(status => status.toLowerCase());
@@ -12,14 +12,14 @@ export class TodoStatusParser {
    * Parses the status of a to-do item.
    * @param status - The status to parse.
    * @param errorMessage - The error message to throw if the status is invalid.
-   * @throws ParsingError If the status is invalid.
+   * @throws ParseError If the status is invalid.
    * @returns The parsed status.
    */
   public static parse(status: unknown, errorMessage: string = STATUS_VALIDATION_MESSAGE): TodoStatus {
     const parsedStatus = TodoStatusParser.parseOptional(status);
 
     if (!parsedStatus) {
-      throw new ParsingError(errorMessage);
+      throw new ParseError(errorMessage);
     }
 
     return parsedStatus;
@@ -29,7 +29,7 @@ export class TodoStatusParser {
    * Parses the status of a to-do item, if it is provided.
    * @param status - The status to parse.
    * @param errorMessage - The error message to throw if the status is invalid.
-   * @throws ParsingError If the status is invalid.
+   * @throws ParseError If the status is invalid.
    * @returns The parsed status or undefined if not provided.
    */
   public static parseOptional(status: unknown, errorMessage: string = STATUS_VALIDATION_MESSAGE): TodoStatus | undefined {
@@ -38,11 +38,11 @@ export class TodoStatusParser {
     }
 
     if (typeof status !== 'string') {
-      throw new ParsingError(errorMessage);
+      throw new ParseError(errorMessage);
     }
 
     if (!Object.values(TodoStatus).includes(status as TodoStatus)) {
-      throw new ParsingError(errorMessage);
+      throw new ParseError(errorMessage);
     }
 
     return status as TodoStatus;

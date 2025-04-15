@@ -1,5 +1,5 @@
 import { validate as isValidUUID } from 'uuid';
-import {ParsingError} from "./parsering-error.js";
+import {ParseError} from "./parse-error.js";
 import {UUID} from "../identity/id.js";
 
 const VALIDATION_MESSAGE = 'Value is not a valid UUID!';
@@ -15,19 +15,19 @@ export class UUIDParser {
    * @param value The value to parse
    * @param errorMessage The error message to throw if the value cannot be parsed to a valid UUID
    *
-   * @throws ParsingError If the value cannot be parsed to a valid UUID
+   * @throws ParseError If the value cannot be parsed to a valid UUID
    * @returns The parsed UUID
    */
   public static parse(value: unknown, errorMessage: string = VALIDATION_MESSAGE): UUID {
     if (value === undefined || value === null || typeof value !== 'string') {
-      throw new ParsingError(errorMessage);
+      throw new ParseError(errorMessage);
     }
 
     if (isValidUUID(value)) {
       return value as UUID;
     }
 
-    throw new ParsingError(errorMessage);
+    throw new ParseError(errorMessage);
   }
 
   private constructor() {

@@ -1,7 +1,7 @@
 import {TodoSortOptions} from "../model/todo-sort-options.js";
 import {RequestQuery} from "../../util/api/request-handler.js";
 import {Order} from "../model/order.js";
-import {ParsingError} from "../../util/parser/parsering-error.js";
+import {ParseError} from "../../util/parser/parse-error.js";
 import {TodoSortAttributes} from "../model/todo-sort-attributes.js";
 
 /**
@@ -12,7 +12,7 @@ export class TodoSortOptionsParser {
    * Parses the sort options from the request query.
    * @param query - The request query containing sort options.
    *
-   * @throws ParsingError If the sort options are invalid.
+   * @throws ParseError If the sort options are invalid.
    * @returns An instance of TodoSortOptions containing the parsed sort options.
    */
   public static parse(query: RequestQuery): TodoSortOptions {
@@ -37,7 +37,7 @@ class OrderOptionsParser {
    * Parses the order of todos.
    *
    * @param order - The order to parse.
-   * @throws ParsingError If the order is invalid.
+   * @throws ParseError If the order is invalid.
    * @returns The parsed order.
    */
   public static parse(order: unknown): Order {
@@ -46,11 +46,11 @@ class OrderOptionsParser {
     }
 
     if (typeof order !== 'string') {
-      throw new ParsingError(ORDER_VALIDATION_MESSAGE);
+      throw new ParseError(ORDER_VALIDATION_MESSAGE);
     }
 
     if (!Object.values(Order).includes(order as Order)) {
-      throw new ParsingError(ORDER_VALIDATION_MESSAGE);
+      throw new ParseError(ORDER_VALIDATION_MESSAGE);
     }
 
     return order as Order;
@@ -72,7 +72,7 @@ class SortOptionsParser {
    * Parses the sort attribute of todos.
    *
    * @param sortBy - The sort attribute to parse.
-   * @throws ParsingError If the sort attribute is invalid.
+   * @throws ParseError If the sort attribute is invalid.
    * @returns The parsed sort attribute.
    */
   public static parse(sortBy: unknown): TodoSortAttributes {
@@ -81,11 +81,11 @@ class SortOptionsParser {
     }
 
     if (typeof sortBy !== 'string') {
-      throw new ParsingError(SORT_VALIDATION_MESSAGE);
+      throw new ParseError(SORT_VALIDATION_MESSAGE);
     }
 
     if (!Object.values(TodoSortAttributes).includes(sortBy as TodoSortAttributes)) {
-      throw new ParsingError(SORT_VALIDATION_MESSAGE);
+      throw new ParseError(SORT_VALIDATION_MESSAGE);
     }
 
     return sortBy as TodoSortAttributes;
