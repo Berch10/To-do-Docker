@@ -1,8 +1,8 @@
-import {TodoSortOptions} from "../model/todo-sort-options";
-import {RequestQuery} from "../../util/api/request-handler";
-import {Order} from "../model/order";
-import {ParsingError} from "../../util/parser/parsering-error";
-import {TodoSortAttributes} from "../model/todo-sort-attributes";
+import {TodoSortOptions} from "../model/todo-sort-options.js";
+import {RequestQuery} from "../../util/api/request-handler.js";
+import {Order} from "../model/order.js";
+import {ParsingError} from "../../util/parser/parsering-error.js";
+import {TodoSortAttributes} from "../model/todo-sort-attributes.js";
 
 /**
  * Parser for sort options of todos.

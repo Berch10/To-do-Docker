@@ -1,11 +1,11 @@
-import {TodoServer} from "./todo-server";
+import {TodoServer} from "./todo-server.js";
 
 const SERVER_PORT = process.env.PORT ? parseInt(process.env.PORT) : 8080;
 const SERVER_HOST = process.env.HOST ?? 'localhost';
 
 const DB_FILE_PATH = process.env.DB_FILE_PATH ?? 'db.json';
 
-const todoServer = TodoServer.start(
+const todoServer: TodoServer = TodoServer.start(
   {
     port: SERVER_PORT,
     host: SERVER_HOST,

@@ -1,4 +1,4 @@
-import {UUID} from "../../util/identity/id";
+import {UUID} from "../../util/identity/id.js";
 
 /**
  * Interface representing a to-do item.

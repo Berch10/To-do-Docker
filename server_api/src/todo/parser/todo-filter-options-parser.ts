@@ -1,7 +1,7 @@
-import {TodoFilterOptions} from "../model/todo-filter-options";
-import {RequestQuery} from "../../util/api/request-handler";
-import {Strings} from "../../util/parser/strings";
-import {TodoStatusParser} from "./todo-status-parser";
+import {TodoFilterOptions} from "../model/todo-filter-options.js";
+import {RequestQuery} from "../../util/api/request-handler.js";
+import {Strings} from "../../util/parser/strings.js";
+import {TodoStatusParser} from "./todo-status-parser.js";
 
 /**
  * Parser for filtering options of todos.

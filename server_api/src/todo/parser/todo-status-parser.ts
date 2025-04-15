@@ -1,5 +1,5 @@
-import {ParsingError} from "../../util/parser/parsering-error";
-import {TodoStatus} from "../model/todo";
+import {ParsingError} from "../../util/parser/parsering-error.js";
+import {TodoStatus} from "../model/todo.js";
 
 const VALID_STATUSES = Object.values(TodoStatus).map(status => status.toLowerCase());
 const STATUS_VALIDATION_MESSAGE = `Status is required as a string of either {${VALID_STATUSES.join(' | ')}!}`;

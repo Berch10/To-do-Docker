@@ -1,5 +1,5 @@
-import {ParsingError} from "./parsering-error";
-import {Strings} from "./strings";
+import {ParsingError} from "./parsering-error.js";
+import {Strings} from "./strings.js";
 
 const ISO_DATE_VALIDATION_MESSAGE = 'Value is not a valid ISO date string!';
 

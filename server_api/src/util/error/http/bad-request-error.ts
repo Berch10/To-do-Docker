@@ -1,4 +1,4 @@
-import {HttpError} from "./http-error";
+import {HttpError} from "./http-error.js";
 
 /**
  * Error class for a 400 Bad Request error.

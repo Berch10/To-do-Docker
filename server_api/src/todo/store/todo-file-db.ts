@@ -1,14 +1,14 @@
-import {TodoSortOptions} from "../model/todo-sort-options";
-import {TodoFilterOptions} from "../model/todo-filter-options";
+import {TodoSortOptions} from "../model/todo-sort-options.js";
+import {TodoFilterOptions} from "../model/todo-filter-options.js";
 import {JSONFilePreset} from 'lowdb/node'
 import {Low} from "lowdb";
-import {TodoDb} from './todo-db';
-import {Todo, TodoStatus} from "../model/todo";
-import {UUID} from "../../util/identity/id";
-import {TodoSortAttributes} from "../model/todo-sort-attributes";
-import {TodoStatusParser} from "../parser/todo-status-parser";
-import {Dates} from "../../util/parser/dates";
-import {Order} from "../model/order";
+import {TodoDb} from './todo-db.js';
+import {Todo, TodoStatus} from "../model/todo.js";
+import {UUID} from "../../util/identity/id.js";
+import {TodoSortAttributes} from "../model/todo-sort-attributes.js";
+import {TodoStatusParser} from "../parser/todo-status-parser.js";
+import {Dates} from "../../util/parser/dates.js";
+import {Order} from "../model/order.js";
 
 type Data = {
   todos: Todo[]

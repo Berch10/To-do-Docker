@@ -1,7 +1,6 @@
-
 import { validate as isValidUUID } from 'uuid';
-import {ParsingError} from "./parsering-error";
-import {UUID} from "../identity/id";
+import {ParsingError} from "./parsering-error.js";
+import {UUID} from "../identity/id.js";
 
 const VALIDATION_MESSAGE = 'Value is not a valid UUID!';
 

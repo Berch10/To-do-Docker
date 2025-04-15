@@ -1,6 +1,7 @@
 {
   "name": "todo-server-api",
   "description": "my first todo app backend",
+  "type": "module",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.2",

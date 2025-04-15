@@ -1,4 +1,4 @@
-import {ParsingError} from "./parsering-error";
+import {ParsingError} from "./parsering-error.js";
 
 const VALIDATION_MESSAGE = 'Value is not an integer!';
 

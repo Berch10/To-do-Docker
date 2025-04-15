@@ -1,5 +1,5 @@
-import {ParsingError} from "./parsering-error";
-import {ValidationError} from "./validation-error";
+import {ParsingError} from "./parsering-error.js";
+import {ValidationError} from "./validation-error.js";
 
 /**
  * Utility class for parsing and validating string values.

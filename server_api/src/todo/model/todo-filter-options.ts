@@ -1,4 +1,4 @@
-import {TodoStatus} from "./todo";
+import {TodoStatus} from "./todo.js";
 
 /**
  * TodoFilterOptions is a class that represents the filter options for a to-do item.

@@ -1,4 +1,4 @@
-import {TodoStatus} from "../model/todo";
+import {TodoStatus} from "../model/todo.js";
 
 /**
  * Data Transfer Object (DTO) for updating a to-do item.

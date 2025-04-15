@@ -1,10 +1,10 @@
-import {JSONObject} from "../../util/json/json";
-import {CreateTodo} from "../dto/create-todo";
-import {ParsingError} from "../../util/parser/parsering-error";
-import {Strings} from "../../util/parser/strings";
-import {Dates} from "../../util/parser/dates";
-import {UpdateTodo} from "../dto/update-todo";
-import {TodoStatusParser} from "./todo-status-parser";
+import {JSONObject} from "../../util/json/json.js";
+import {CreateTodo} from "../dto/create-todo.js";
+import {ParsingError} from "../../util/parser/parsering-error.js";
+import {Strings} from "../../util/parser/strings.js";
+import {Dates} from "../../util/parser/dates.js";
+import {UpdateTodo} from "../dto/update-todo.js";
+import {TodoStatusParser} from "./todo-status-parser.js";
 
 const TODO_VALIDATION_MESSAGE = 'Todo is required as a JSON object.';
 const TITLE_VALIDATION_MESSAGE = 'Title is required as a string with at least 3 characters.';

@@ -2,12 +2,12 @@ import express, {NextFunction, Request, Response} from 'express';
 import * as path from 'node:path';
 import * as http from "node:http";
 import cors from 'cors';
-import {TodoFileDb} from "./todo/store/todo-file-db";
-import {TodoService} from "./todo/service/todo-service";
-import {TodoApi} from "./todo/api/todo-api";
-import {ValidationError} from "./util/parser/validation-error";
-import {Respond} from "./util/api/request-handler";
-import {HttpError} from "./util/error/http/http-error";
+import {TodoFileDb} from "./todo/store/todo-file-db.js";
+import {TodoService} from "./todo/service/todo-service.js";
+import {TodoApi} from "./todo/api/todo-api.js";
+import {ValidationError} from "./util/parser/validation-error.js";
+import {Respond} from "./util/api/request-handler.js";
+import {HttpError} from "./util/error/http/http-error.js";
 
 /**
  * Configuration for the to-do server.
@@ -72,7 +72,7 @@ export class TodoServer {
       app.use(express.json());
 
       // serve client files
-      app.use(express.static(path.join(__dirname, '..', '..', 'client_app/build')));
+      app.use(express.static(path.join(import.meta.dirname, '..', '..', 'client_app/build')));
 
       app.use(cors(
         {

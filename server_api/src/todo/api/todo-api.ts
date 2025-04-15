@@ -1,13 +1,13 @@
 import {Express} from "express";
-import {TodoService} from "todo/service/todo-service";
-import {RequestHandler, Respond} from "../../util/api/request-handler";
-import {TodoFilterOptionsParser} from "../parser/todo-filter-options-parser";
-import {TodoSortOptions} from "../model/todo-sort-options";
-import {TodoSortOptionsParser} from "../parser/todo-sort-options-parser";
-import {UUIDParser} from "../../util/parser/uuid-parser";
-import {NotFoundError} from "../../util/error/http/not-found-error";
-import {TodoDtoParser} from "../parser/todo-dto-parser";
-import {TodoStatusParser} from "../parser/todo-status-parser";
+import {TodoService} from "todo/service/todo-service.js";
+import {RequestHandler, Respond} from "../../util/api/request-handler.js";
+import {TodoFilterOptionsParser} from "../parser/todo-filter-options-parser.js";
+import {TodoSortOptions} from "../model/todo-sort-options.js";
+import {TodoSortOptionsParser} from "../parser/todo-sort-options-parser.js";
+import {UUIDParser} from "../../util/parser/uuid-parser.js";
+import {NotFoundError} from "../../util/error/http/not-found-error.js";
+import {TodoDtoParser} from "../parser/todo-dto-parser.js";
+import {TodoStatusParser} from "../parser/todo-status-parser.js";
 
 const INVALID_TODO_ID_MESSAGE = 'Todo ID must be a hex encoded UUID v4 string';
 const TODO_NOT_FOUND_MESSAGE = 'Todo not found';

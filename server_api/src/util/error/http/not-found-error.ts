@@ -1,4 +1,4 @@
-import {HttpError} from "./http-error";
+import {HttpError} from "./http-error.js";
 
 /**
  * Error class for a 404 Not Found error.

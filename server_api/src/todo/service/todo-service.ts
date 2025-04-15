@@ -1,11 +1,11 @@
-import { UUIDGenerator } from "../../util/identity/uuid-generator";
-import { UpdateTodo } from "../dto/update-todo";
-import { Todo, TodoStatus} from "../model/todo";
-import {TodoDb} from "../store/todo-db";
-import {TodoFilterOptions} from "../model/todo-filter-options";
-import {TodoSortOptions} from "../model/todo-sort-options";
-import {UUID} from "../../util/identity/id";
-import {CreateTodo} from "../dto/create-todo";
+import { UUIDGenerator } from "../../util/identity/uuid-generator.js";
+import { UpdateTodo } from "../dto/update-todo.js";
+import { Todo, TodoStatus} from "../model/todo.js";
+import {TodoDb} from "../store/todo-db.js";
+import {TodoFilterOptions} from "../model/todo-filter-options.js";
+import {TodoSortOptions} from "../model/todo-sort-options.js";
+import {UUID} from "../../util/identity/id.js";
+import {CreateTodo} from "../dto/create-todo.js";
 
 /**
  * A class that provides services for managing to-do items.

@@ -1,7 +1,7 @@
-import {TodoFilterOptions} from "../model/todo-filter-options";
-import {TodoSortOptions} from "../model/todo-sort-options";
-import {Todo} from "../model/todo";
-import {UUID} from "../../util/identity/id";
+import {TodoFilterOptions} from "../model/todo-filter-options.js";
+import {TodoSortOptions} from "../model/todo-sort-options.js";
+import {Todo} from "../model/todo.js";
+import {UUID} from "../../util/identity/id.js";
 
 /**
  * Database for managing to-do items.
@@ -31,8 +31,7 @@ export interface TodoDb {
 
   /**
    * Updates an existing to-do item by its ID.
-   * @param id - The ID of the to-do item to update.
-   * @param todo - The updated to-do item.
+   * @param todo - The to-do item to update.
    * @returns The updated to-do item, or undefined if not found.
    */
   update(todo: Todo): Promise<Todo | undefined>;

@@ -1,5 +1,5 @@
-import {TodoSortAttributes} from "./todo-sort-attributes";
-import {Order} from "./order";
+import {TodoSortAttributes} from "./todo-sort-attributes.js";
+import {Order} from "./order.js";
 
 /**
  * Represents the sorting options for todos.
