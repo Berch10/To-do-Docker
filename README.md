@@ -15,8 +15,8 @@ Before building and running the project, ensure you have the following installed
 
 1. Clone the repository:
    ```bash
-   git clone git@git.thm.de:pi2_vorlesung/todo_app.git
-   cd todo_app
+   git clone git@git.thm.de:praktische-informatik-2-ss25/to-do-app.git
+   cd to-do-app
    ```
 
 2. Install dependencies:
