@@ -4,6 +4,9 @@ This is a simple to-do application built with TypeScript and JavaScript.
 The app allows users to manage their tasks by creating, editing, deleting, and marking them as done.
 It also supports sorting and filtering tasks based on various criteria.
 
+## Team members
+- <team member>
+
 ## Prerequisites
 
 Before building and running the project, ensure you have the following installed:
