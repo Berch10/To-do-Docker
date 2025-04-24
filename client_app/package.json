@@ -12,6 +12,6 @@
     "typescript": "^5.8.3"
   },
   "scripts": {
-    "build": "shx cp -r 'public' 'build' && tsc --build && shx cp -r node_modules 'build/'"
+    "build": "shx cp -r public build && tsc --build && shx cp -r node_modules build/"
   }
 }
