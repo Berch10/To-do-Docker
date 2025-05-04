@@ -18,7 +18,7 @@ Before building and running the project, ensure you have the following installed
 
 1. Clone the repository:
    ```bash
-   git clone git@git.thm.de:praktische-informatik-2-ss25/to-do-app.git
+   git clone git@git.thm.de:pi2-ss25-fr3d1/to-do-app.git
    cd to-do-app
    ```
 
