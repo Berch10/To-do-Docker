@@ -5,7 +5,8 @@ The app allows users to manage their tasks by creating, editing, deleting, and m
 It also supports sorting and filtering tasks based on various criteria.
 
 ## Team members
-Ivan Dobrodeev
+- Ivan Dobrodeev
+- Markus Berchtenbreiter
 
 ## Prerequisites
 
