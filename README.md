@@ -17,32 +17,44 @@ Before building and running the project, ensure you have the following installed
 
 ## Installation
 
-1. Clone the repository:
+Clone the repository:
    ```bash
    git clone git@git.thm.de:pi2-ss25-fr3d1/to-do-app.git
    cd to-do-app
    ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-## Build
-
-To build the project, run:
-```bash
-npm run build
-```
-
-This will compile the TypeScript code into JavaScript and place the output in the `build` directory.
-
 ## Start
 
-To start the project, run:
+This will:
+
+- Install all dependencies
+
+- Build the application
+
+- Create the Docker image
+
+- Start the container using Docker Compose
+
+- Mount a named volume to persist the data
+
+Once started, the app will be available at:
+http://localhost:8080
 ```bash
-npm start
+npm run start:compose
 ```
 
-This will launch the application on `http://localhost:8080` by default.
+## Alternative manual commands (optional)
+
+This will:
+- Install all dependencies
+- Build the image
+- Build the application
+```bash
+npm run build:docker
+```
+
+- Start the container (without Docker Compose). Data will not be persistent with this method:
+```bash
+npm run start:docker
+```
+
 
