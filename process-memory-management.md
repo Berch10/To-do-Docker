@@ -16,22 +16,7 @@ Jeder Prozess wird durch einen **Prozesskontrollblock (PCB)** verwaltet, der all
 **Informationen im PCB:**
 - **Prozess-ID (PID):** Eindeutige Nummer zur Identifizierung des Prozesses.
 - **Prozesszustand:** Status des Prozesses (z. B. bereit, laufend, blockiert).
-- **CPU# Round-Robin-Scheduling-Algorithmus
-
-## Aufgabenbeschreibung
-In dieser Aufgabe wird der Round-Robin-Scheduling-Algorithmus anhand der folgenden Prozesse und einer Zeitscheibe von 2 ms demonstriert:
-
-| Prozess | Ankunftszeit (ms) | Ausführungszeit (ms) |
-|---------|--------------------|---------------------|
-| P1      | 0                 | 4                   |
-| P2      | 2                 | 9                   |
-| P3      | 4                 | 5                   |
-| P4      | 6                 | 1                   |
-
----
-
-## Gantt-Diagramm
-Das folgende Gantt-Diagramm zeigt die Ausführung der Prozesse über die Zeit:-Register:** Zustand der CPU-Register für Kontextwechsel.
+- **CPU-Register:** Zustand der CPU-Register für Kontextwechsel.
 - **Speicherinformationen:** Basis- und Limitadressen des zugewiesenen Speichers.
 - **Prozesspriorität:** Priorität des Prozesses.
 - **I/O-Status:** Informationen über geöffnete Dateien oder Geräte.
@@ -62,6 +47,9 @@ Prozesse durchlaufen verschiedene Phasen während ihrer Ausführung.
 - **Wartend → Ausführungswarteschlange:** Ressource wird verfügbar.
 - **Aktiv → Beendet:** Prozess abgeschlossen.
 
+*Bei präemptivem Scheduling*
+- **Running → Ready:** Wenn ein höherpriorisierter Prozess verfügbar ist.
+
 ---
 
 #### 3. Prozess-Scheduling: Welche Unterschiede bestehen zwischen präemptivem und nicht-präemptivem Scheduling? Welche Vor- und Nachteile haben die beiden Ansätze?
@@ -74,7 +62,7 @@ Prozesse durchlaufen verschiedene Phasen während ihrer Ausführung.
 **Nicht-präemptives Scheduling:**
 - **Definition:** Der Prozess behält die CPU, bis er abgeschlossen oder blockiert ist.
 - **Vorteile:** Weniger Overhead, einfachere Implementierung.
-- **Nachteile:** Mögliche Verzögerungen bei langen Prozessen
+- **Nachteile:** Mögliche Verzögerungen bei langen Prozessen, kein schnelles Reagieren auf zeitkritische Prozesse
 
 ---
 
@@ -85,12 +73,15 @@ Prozesse durchlaufen verschiedene Phasen während ihrer Ausführung.
 
 **Funktionsweise:**
 - Der Speicher wird in **Seiten** (Pages) unterteilt.
-- Nicht benötigte Seiten werden auf die Festplatte ausgelagert.
+- Das Betriebssystem und die Hardware – insbesondere die Memory Management Unit (MMU) – übersetzen virtuelle Adressen in physische Adressen.
+- Nicht benötigte Seiten werden auf die Festplatte ausgelagert (Swap-Speicher)..
 
 **Vorteile:**
-- Größere Speicheradressräume.
-- Schutz und Isolation zwischen Prozessen.
-- Effiziente Speicherverwaltung.
+- Größere Speicheradressräume: Prozesse können mehr Speicher ansprechen, als physisch vorhanden ist.
+- Schutz und Isolation zwischen Prozessen: Jeder Prozess hat seinen eigenen Adressraum.
+- Effiziente Speicherverwaltung: Nicht benötigter Speicher kann ausgelagert werden.
+- Mehr Programme können gleichzeitig laufen, auch wenn nicht genug RAM für alle vorhanden ist.
+- Schutz vor illegalem Speicherzugriff, da Prozesse nicht in die Adressräume anderer Prozesse eingreifen können.
 
 ---
 
@@ -112,75 +103,10 @@ Prozesse durchlaufen verschiedene Phasen während ihrer Ausführung.
 - Ineffiziente Nutzung des Speichers durch ungünstige Speicherzuweisungen.
 
 **Arten:**
-- **Interne Fragmentierung:** Unbenutzter Speicher innerhalb eines zugewiesenen Blocks.
-- **Externe Fragmentierung:** Freier Speicher ist verteilt und nicht nutzbar.
+- **Interne Fragmentierung:** Speicherblöcke sind größer als nötig, wodurch innerhalb eines Blocks ungenutzter Speicher bleibt.
+- **Externe Fragmentierung:** iele kleine freie Speicherblöcke sind über den Speicher verteilt, sodass größere Anforderungen nicht erfüllt werden können, obwohl insgesamt genug freier Speicher vorhanden wäre.
 
 **Reduzierung:**
 - Verwendung von Paging oder Segmentierung.
 - Speicherkompaktierung.
 - Dynamische Speicherzuweisung mit geeigneten Algorithmen.
-
----
-### ✅ Aufgabe 2: Round-Robin Scheduling Algorithm
-
-#### Aufgabenbeschreibung
-In dieser Aufgabe wird der Round-Robin-Scheduling-Algorithmus anhand der folgenden Prozesse und einer Zeitscheibe von 2 ms demonstriert:
-
-| Prozess | Ankunftszeit (ms) | Ausführungszeit (ms) |
-|---------|--------------------|---------------------|
-| P1      | 0                 | 7                   |
-| P2      | 2                 | 4                   |
-| P3      | 4                 | 9                   |
-| P4      | 6                 | 5                   |
-
----
-
-#### Gantt-Diagramm
-Das folgende Gantt-Diagramm zeigt die Ausführung der Prozesse über die Zeit:
-
----
-
-#### Berechnungen
-
-##### Wartezeit (WT)
-- **P1:** 0 (Start) + 6 (Warten auf zweiten Slot) + 6 (Warten auf dritten Slot) = **12 ms**
-- **P2:** 2 (Start) + 4 (Warten auf zweiten Slot) = **6 ms**
-- **P3:** 4 (Start) + 6 (Warten auf zweiten Slot) + 6 (Warten auf dritten Slot) = **16 ms**
-- **P4:** 8 (Start) + 6 (Warten auf zweiten Slot) = **14 ms**
-
-**Durchschnittliche Wartezeit:**
-\[
-WT_{avg} = \frac{12 + 6 + 16 + 14}{4} = 12 \, \text{ms}
-\]
-
-##### Durchlaufzeit (TAT)
-- **P1:** 20 ms (Endzeit - Ankunftszeit)
-- **P2:** 10 ms (Endzeit - Ankunftszeit)
-- **P3:** 22 ms (Endzeit - Ankunftszeit)
-- **P4:** 18 ms (Endzeit - Ankunftszeit)
-
-**Durchschnittliche Durchlaufzeit:**
-\[
-TAT_{avg} = \frac{20 + 10 + 22 + 18}{4} = 17.5 \, \text{ms}
-\]
-
----
-
-#### Erklärung des Round-Robin-Scheduling
-Der Round-Robin-Scheduling-Algorithmus ist ein präemptiver Scheduling-Algorithmus, bei dem jedem Prozess eine feste Zeitscheibe (Time Slice) zugewiesen wird. Wenn ein Prozess innerhalb seiner Zeitscheibe nicht abgeschlossen wird, wird er aus der CPU entfernt und ans Ende der Ready-Queue gestellt. Der nächste Prozess wird dann ausgeführt.
-
-##### Vorteile
-- Fairness: Alle Prozesse erhalten gleiche CPU-Zeit.
-- Reduzierte Wartezeit für kurze Prozesse.
-- Geeignet für zeitkritische Anwendungen.
-
-##### Nachteile
-- Hoher Overhead durch häufige Kontextwechsel.
-- Ineffizient, wenn die Zeitscheibe zu klein oder zu groß gewählt wird.
-
----
-
-#### Zusammenfassung der Ergebnisse
-- **Durchschnittliche Wartezeit:** 12 ms
-- **Durchschnittliche Durchlaufzeit:** 17.5 ms
-
