@@ -16,7 +16,22 @@ Jeder Prozess wird durch einen **Prozesskontrollblock (PCB)** verwaltet, der all
 **Informationen im PCB:**
 - **Prozess-ID (PID):** Eindeutige Nummer zur Identifizierung des Prozesses.
 - **Prozesszustand:** Status des Prozesses (z. B. bereit, laufend, blockiert).
-- **CPU-Register:** Zustand der CPU-Register für Kontextwechsel.
+- **CPU# Round-Robin-Scheduling-Algorithmus
+
+## Aufgabenbeschreibung
+In dieser Aufgabe wird der Round-Robin-Scheduling-Algorithmus anhand der folgenden Prozesse und einer Zeitscheibe von 2 ms demonstriert:
+
+| Prozess | Ankunftszeit (ms) | Ausführungszeit (ms) |
+|---------|--------------------|---------------------|
+| P1      | 0                 | 4                   |
+| P2      | 2                 | 9                   |
+| P3      | 4                 | 5                   |
+| P4      | 6                 | 1                   |
+
+---
+
+## Gantt-Diagramm
+Das folgende Gantt-Diagramm zeigt die Ausführung der Prozesse über die Zeit:-Register:** Zustand der CPU-Register für Kontextwechsel.
 - **Speicherinformationen:** Basis- und Limitadressen des zugewiesenen Speichers.
 - **Prozesspriorität:** Priorität des Prozesses.
 - **I/O-Status:** Informationen über geöffnete Dateien oder Geräte.
@@ -104,3 +119,68 @@ Prozesse durchlaufen verschiedene Phasen während ihrer Ausführung.
 - Verwendung von Paging oder Segmentierung.
 - Speicherkompaktierung.
 - Dynamische Speicherzuweisung mit geeigneten Algorithmen.
+
+---
+### ✅ Aufgabe 2: Round-Robin Scheduling Algorithm
+
+#### Aufgabenbeschreibung
+In dieser Aufgabe wird der Round-Robin-Scheduling-Algorithmus anhand der folgenden Prozesse und einer Zeitscheibe von 2 ms demonstriert:
+
+| Prozess | Ankunftszeit (ms) | Ausführungszeit (ms) |
+|---------|--------------------|---------------------|
+| P1      | 0                 | 7                   |
+| P2      | 2                 | 4                   |
+| P3      | 4                 | 9                   |
+| P4      | 6                 | 5                   |
+
+---
+
+#### Gantt-Diagramm
+Das folgende Gantt-Diagramm zeigt die Ausführung der Prozesse über die Zeit:
+
+---
+
+#### Berechnungen
+
+##### Wartezeit (WT)
+- **P1:** 0 (Start) + 6 (Warten auf zweiten Slot) + 6 (Warten auf dritten Slot) = **12 ms**
+- **P2:** 2 (Start) + 4 (Warten auf zweiten Slot) = **6 ms**
+- **P3:** 4 (Start) + 6 (Warten auf zweiten Slot) + 6 (Warten auf dritten Slot) = **16 ms**
+- **P4:** 8 (Start) + 6 (Warten auf zweiten Slot) = **14 ms**
+
+**Durchschnittliche Wartezeit:**
+\[
+WT_{avg} = \frac{12 + 6 + 16 + 14}{4} = 12 \, \text{ms}
+\]
+
+##### Durchlaufzeit (TAT)
+- **P1:** 20 ms (Endzeit - Ankunftszeit)
+- **P2:** 10 ms (Endzeit - Ankunftszeit)
+- **P3:** 22 ms (Endzeit - Ankunftszeit)
+- **P4:** 18 ms (Endzeit - Ankunftszeit)
+
+**Durchschnittliche Durchlaufzeit:**
+\[
+TAT_{avg} = \frac{20 + 10 + 22 + 18}{4} = 17.5 \, \text{ms}
+\]
+
+---
+
+#### Erklärung des Round-Robin-Scheduling
+Der Round-Robin-Scheduling-Algorithmus ist ein präemptiver Scheduling-Algorithmus, bei dem jedem Prozess eine feste Zeitscheibe (Time Slice) zugewiesen wird. Wenn ein Prozess innerhalb seiner Zeitscheibe nicht abgeschlossen wird, wird er aus der CPU entfernt und ans Ende der Ready-Queue gestellt. Der nächste Prozess wird dann ausgeführt.
+
+##### Vorteile
+- Fairness: Alle Prozesse erhalten gleiche CPU-Zeit.
+- Reduzierte Wartezeit für kurze Prozesse.
+- Geeignet für zeitkritische Anwendungen.
+
+##### Nachteile
+- Hoher Overhead durch häufige Kontextwechsel.
+- Ineffizient, wenn die Zeitscheibe zu klein oder zu groß gewählt wird.
+
+---
+
+#### Zusammenfassung der Ergebnisse
+- **Durchschnittliche Wartezeit:** 12 ms
+- **Durchschnittliche Durchlaufzeit:** 17.5 ms
+
