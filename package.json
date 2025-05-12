@@ -2,7 +2,10 @@
   "name": "todo-app",
   "private": true,
   "scripts": {
-    "build:prod": "npm install && npm run build --prefix client_app && npm run build --prefix server_api",
+    "install": "npm ci --prefix client_app && npm ci --prefix server_api",
+    "build": "npm run build --prefix client_app && npm run build --prefix server_api",
+
+    "build:prod": "npm run install && npm run build",
     "build:docker": "npm run build:prod && docker build --no-cache -t todo-app .",
     "start:docker": "docker run -p 8080:8080 todo-app",
     "start:compose": "npm run build:docker && docker compose up --force-recreate"
