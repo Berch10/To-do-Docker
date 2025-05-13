@@ -87,6 +87,15 @@ export class TodoServer {
       const todoApi = new TodoApi(todoService);
       todoApi.appendRouting(app);
 
+      // 🔧 Custom memory stress test route
+      app.get('/stress-memory', (req, res) => {
+        const memoryHog: any[] = [];
+        for (let i = 0; i < 1000000; i++) {
+          memoryHog.push(new Array(1000).fill('*'));
+        }
+        res.send('Memory stress simulated!');
+      });
+
       // Register global error handling to ensure that all errors are caught and a http response is sent
       app.use(TodoServer.errorHandler);
 
