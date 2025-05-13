@@ -59,7 +59,13 @@ curl http://localhost:8080/stress-memory?size=50
 ```
 ![!curl-Befehl](ResourceMD/Curl Befehl.png)
 
-Mehrfaches Ausführen dieses Befehls erhöht die Speicherauslastung.
+Das bedeutet:
+
+🛑 Der Server hat die Verbindung akzeptiert, aber keine gültige HTTP-Antwort zurückgesendet.
+
+Das passiert in der Regel, wenn dein Server abgestürzt ist oder sich unerwartet beendet hat – und genau das ist in deinem Fall zu erwarten, wenn du die Route /stress-memory testest.
+
+Denn: Diese Route versucht, Speicher zu allokieren, bis das im Container gesetzte Limit (z. B. 256 MB) erreicht wird. Sobald Node.js keinen weiteren Speicher mehr zuweisen kann, bricht der Server mit einem „Out of Memory“-Fehler ab – er stürzt ab, ohne eine Antwort an den Client (also curl) zurückzugeben.
 
 ### 🔍 4. Beobachtungen
 
