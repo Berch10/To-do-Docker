@@ -17,33 +17,27 @@ In dieser Aufgabe wurde eine neue Route `/stress-memory` zur To-Do-Anwendung hin
 
 In der Datei `todo-server.ts` wurde folgende Route ergänzt:
 ```ts
-const memoryHog: Buffer[] = [];
-
-app.get('/stress-memory', (req: Request, res: Response) => {
-  const size = parseInt(req.query.size as string || '10'); // Größe in MB
-  if (isNaN(size) || size <= 0) {
-    return res.status(400).send('Ungültige Größe');
+const memoryHog: any[] = [];
+app.get('/stress-memory', (req, res) => {
+  for (let i = 0; i < 10000; i++) {
+    memoryHog.push(new Array(1000).fill('*'));
   }
-
-  const allocatedMemory = Buffer.alloc(size * 1024 * 1024, 'a'); // Allokiert "size" MB im RAM
-  memoryHog.push(allocatedMemory); // Speichert die allokierten Daten in einem Array, damit sie nicht vom Garbage Collector gelöscht werden
-
-  res.send(`Allocated additional ${size} MB. Total chunks: ${memoryHog.length}`);
+  res.send('Memory stress simulated!');
 });
+
 ```
 
 #### Erklärung des Codes
 
-| **Codezeile** | **Erklärung** |
-|---------------|----------------|
-| `req.query.size` | Liest den Wert des URL-Parameters `size` aus (z. B. `/stress-memory?size=50`) |
-| `parseInt(...)` | Wandelt den Parameter von String in eine Zahl (Integer) um |
-| `if (isNaN(size) || size <= 0)` | Überprüft, ob der Parameter gültig ist (z. B. kein Text oder negative Zahl) |
-| `Buffer.alloc(...)` | Allokiert Speicher im RAM – hier wird ein **Buffer** mit `size` Megabytes erzeugt |
-| `size * 1024 * 1024` | Umrechnung von MB in Byte (1 MB = 1024 × 1024 Byte) |
-| `'a'` | Der Buffer wird mit dem Zeichen `'a'` gefüllt – einfach nur, um die Speicherbelegung zu initialisieren |
-| `memoryHog.push(...)` | Speichert den Buffer in einem globalen Array, damit er **nicht** vom Garbage Collector gelöscht wird |
-| `res.send(...)` | Sendet eine Bestätigung zurück mit der Anzahl der allokierten Chunks |
+| **Codezeile**                           | **Erklärung**                                                                                                                  |
+|-----------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| `const memoryHog: any[] = [];`          | Erstellt ein leeres Array, in dem große Datenmengen gespeichert werden, um den RAM zu belasten. Existenz von diese Konstant verhindert, dass der Garbage Collector ihn löscht |
+| `app.get('/stress-memory', ...)`        | Definiert eine neue GET-Route unter `/stress-memory`, die absichtlich viel Speicher beansprucht                                |
+| `for (let i = 0; i < 1000000; i++)`     | Schleife läuft **eine Million Mal**, um eine große Menge an Speicher zu belegen                                                |
+| `new Array(1000).fill('*')`             | Erzeugt ein neues Array mit 1000 Elementen, die alle mit dem Zeichen `'*'` gefüllt sind                                        |
+| `memoryHog.push(...)`                   | Fügt das erzeugte Array in `memoryHog` ein|
+| `res.send('Memory stress simulated!')`  | Sendet nach dem Durchlauf der Schleife eine Antwort an den Client, dass der Test abgeschlossen ist                             |
+
 
 ### 🐳 2. Container mit Speichergrenze starten
 
@@ -55,9 +49,9 @@ docker run --memory=256m -p 8080:8080 --name memory-test-container todo-app
 ### ⚙️ 3. Aufruf der Route zum Auslösen von Speicherverbrauch
 
 ```bash
-curl http://localhost:8080/stress-memory?size=50
+curl http://localhost:8080/stress-memory
 ```
-![!curl-Befehl](ResourceMD/Curl Befehl.png)
+![!curl-Befehl](ResourceMD/memory-tests.png)
 
 Das bedeutet:
 
@@ -87,7 +81,7 @@ Der Node.js-Prozess wurde durch den Container gestoppt. Der Container beendet si
 ### 🧠 Bedeutung von `--memory-swap`
 
 - Die Option `--memory-swap` kontrolliert, wie viel **zusätzlicher Swap-Speicher** ein Container verwenden darf.
-- Wenn z. B. `--memory=256m` und `--memory-swap=512m` gesetzt ist, darf der Container insgesamt 512 MB nutzen (RAM + Swap).
+- Wenn z.B. `--memory=256m` und `--memory-swap=512m` gesetzt ist, darf der Container insgesamt 512 MB nutzen (RAM + Swap).
 - Ohne Angabe von `--memory-swap` ist standardmäßig keine Nutzung von Swap erlaubt.
 
 ### ✅ Fazit
