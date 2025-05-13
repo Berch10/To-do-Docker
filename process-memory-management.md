@@ -47,6 +47,9 @@ Prozesse durchlaufen verschiedene Phasen während ihrer Ausführung.
 - **Wartend → Ausführungswarteschlange:** Ressource wird verfügbar.
 - **Aktiv → Beendet:** Prozess abgeschlossen.
 
+*Bei präemptivem Scheduling*
+- **Running → Ready:** Wenn ein höherpriorisierter Prozess verfügbar ist.
+
 ---
 
 #### 3. Prozess-Scheduling: Welche Unterschiede bestehen zwischen präemptivem und nicht-präemptivem Scheduling? Welche Vor- und Nachteile haben die beiden Ansätze?
@@ -59,7 +62,7 @@ Prozesse durchlaufen verschiedene Phasen während ihrer Ausführung.
 **Nicht-präemptives Scheduling:**
 - **Definition:** Der Prozess behält die CPU, bis er abgeschlossen oder blockiert ist.
 - **Vorteile:** Weniger Overhead, einfachere Implementierung.
-- **Nachteile:** Mögliche Verzögerungen bei langen Prozessen
+- **Nachteile:** Mögliche Verzögerungen bei langen Prozessen, kein schnelles Reagieren auf zeitkritische Prozesse
 
 ---
 
@@ -70,12 +73,15 @@ Prozesse durchlaufen verschiedene Phasen während ihrer Ausführung.
 
 **Funktionsweise:**
 - Der Speicher wird in **Seiten** (Pages) unterteilt.
-- Nicht benötigte Seiten werden auf die Festplatte ausgelagert.
+- Das Betriebssystem und die Hardware – insbesondere die Memory Management Unit (MMU) – übersetzen virtuelle Adressen in physische Adressen.
+- Nicht benötigte Seiten werden auf die Festplatte ausgelagert (Swap-Speicher)..
 
 **Vorteile:**
-- Größere Speicheradressräume.
-- Schutz und Isolation zwischen Prozessen.
-- Effiziente Speicherverwaltung.
+- Größere Speicheradressräume: Prozesse können mehr Speicher ansprechen, als physisch vorhanden ist.
+- Schutz und Isolation zwischen Prozessen: Jeder Prozess hat seinen eigenen Adressraum.
+- Effiziente Speicherverwaltung: Nicht benötigter Speicher kann ausgelagert werden.
+- Mehr Programme können gleichzeitig laufen, auch wenn nicht genug RAM für alle vorhanden ist.
+- Schutz vor illegalem Speicherzugriff, da Prozesse nicht in die Adressräume anderer Prozesse eingreifen können.
 
 ---
 
@@ -97,8 +103,8 @@ Prozesse durchlaufen verschiedene Phasen während ihrer Ausführung.
 - Ineffiziente Nutzung des Speichers durch ungünstige Speicherzuweisungen.
 
 **Arten:**
-- **Interne Fragmentierung:** Unbenutzter Speicher innerhalb eines zugewiesenen Blocks.
-- **Externe Fragmentierung:** Freier Speicher ist verteilt und nicht nutzbar.
+- **Interne Fragmentierung:** Speicherblöcke sind größer als nötig, wodurch innerhalb eines Blocks ungenutzter Speicher bleibt.
+- **Externe Fragmentierung:** iele kleine freie Speicherblöcke sind über den Speicher verteilt, sodass größere Anforderungen nicht erfüllt werden können, obwohl insgesamt genug freier Speicher vorhanden wäre.
 
 **Reduzierung:**
 - Verwendung von Paging oder Segmentierung.
